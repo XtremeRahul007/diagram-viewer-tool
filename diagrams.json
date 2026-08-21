@@ -1,11 +1,11 @@
 {
-  "auth-flow": {
-    "title": "Registration / Auth Flow",
+  "user-registration-diagram": {
+    "title": "User Registration Diagram",
     "type": "sequence",
     "definition": "sequenceDiagram\n  actor Client\n  participant API as Express API\n  participant MW as Router / middlewares\n  participant Ctrl as Controllers\n  participant Val as Validators\n  participant Svc as Services\n  participant Argon as Argon2id\n  participant Repo as Repository\n  participant DB as Database\n  participant Err as Error handler\n  Client->>API: request\n  API->>MW: request\n  MW->>Ctrl: request\n  Ctrl->>Val: req.body\n  Val-->>Ctrl: registered / logged in user\n  Ctrl->>Svc: user\n  Svc->>Argon: password\n  Argon-->>Svc: password hash\n  Note right of Svc: logs email, username, metadata\n  Svc->>Repo: email, username, password hash\n  Repo->>DB: write\n  alt success\n      DB-->>Repo: ok\n      Repo-->>Svc: ok\n      Svc-->>Ctrl: ok\n      Ctrl-->>MW: res\n      MW-->>API: res\n      API-->>Client: res\n  else db / validation / app / node error\n      DB-->>Repo: error\n      Repo-->>Svc: error\n      Svc-->>Ctrl: error\n      Ctrl->>Err: error\n      Note right of Err: logs error\n      Err-->>API: error response\n      API-->>Client: error response\n  end"
   },
-  "example-flow": {
-    "title": "Example Placeholder Flow",
+  "default-diagram": {
+    "title": "Default Placeholder Diagram",
     "type": "sequence",
     "definition": "sequenceDiagram\n  actor Client\n  participant API\n  participant DB\n  Client->>API: request\n  API->>DB: query\n  DB-->>API: result\n  API-->>Client: response"
   }
