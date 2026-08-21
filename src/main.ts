@@ -9,7 +9,7 @@ interface DiagramEntry {
 
 type DiagramMap = Record<string, DiagramEntry>;
 
-const DIAGRAMS_URL = `${import.meta.env.BASE_URL}diagrams.json`;
+const DIAGRAMS_URL = `${import.meta.env.BASE_URL}/diagrams.json`;
 const DEFAULT_DIAGRAM_ID = "auth-flow";
 
 let mermaid: Mermaid | null = null;
@@ -94,7 +94,6 @@ function setLoading(
   loading.style.display = "flex";
   loading.innerHTML = "";
 
-
   if (!error) {
     const spinner = document.createElement("div");
     spinner.className = "loading-spinner";
@@ -142,7 +141,6 @@ async function loadDiagrams(): Promise<DiagramMap> {
   }
   return (await res.json()) as DiagramMap;
 }
-
 
 async function ensureLibrariesLoaded(): Promise<void> {
   if (librariesReady) return;
