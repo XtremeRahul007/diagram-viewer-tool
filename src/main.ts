@@ -10,7 +10,7 @@ interface DiagramEntry {
 type DiagramMap = Record<string, DiagramEntry>;
 
 const DIAGRAMS_URL = `${import.meta.env.BASE_URL}/diagrams.json`;
-const DEFAULT_DIAGRAM_ID = "auth-flow";
+const DEFAULT_DIAGRAM_ID = "default-diagram";
 
 let mermaid: Mermaid | null = null;
 let svgPanZoom: any = null;
